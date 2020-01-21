@@ -1,0 +1,73 @@
+body {
+    background-color: rgb(174, 255, 248);
+}
+
+div.container {
+    width: 400px;
+    height: 400px;
+    display: block;
+    position: absolute;
+    background: #F2F2F2;
+    border: 5px solid #ccc;
+    box-shadow: 1px 1px 2px #fff inset,
+                -1px -1px 2px #fff inset;
+    border-radius: 12px/24px;
+    border-style: double;
+}
+
+div.inside-container {
+    width: 400px;
+    height: 50px;
+    border: 1px solid black;
+    display: block;
+    position: absolute;
+    top: 40%;
+    text-align: center;
+    font-size: 2em;
+    border-radius: 6px/12px;
+    border-style: dashed;
+    background-color: white;
+}
+
+span.ch {
+    position: absolute;
+    margin-top: 8px;
+    left: 40%;
+    /* color: crimson; */
+}
+
+div.scoreboard {
+    top: 69%;
+    position: absolute;
+    left: 27%;
+    text-align: center;
+    width: 700px;
+}
+
+div#left-player {
+    top: 20%;
+    left: 18%;
+}
+
+div#right-player {
+    top: 20%;
+    left: 52%;
+}
+
+button.sc-btn {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;   
+}
+
+p#winner {
+    font-size: 4em;
+    color: yellowgreen;
+}
