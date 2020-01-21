@@ -2,6 +2,12 @@ body {
     background-color: rgb(174, 255, 248);
 }
 
+.disabled {
+    cursor: no-drop !important; 
+    background-color: aliceblue !important;
+    color: darkgray !important;
+}
+
 div.container {
     width: 400px;
     height: 400px;
@@ -16,7 +22,7 @@ div.container {
 }
 
 div.inside-container {
-    width: 400px;
+    width: 390px;
     height: 50px;
     border: 1px solid black;
     display: block;
@@ -27,6 +33,7 @@ div.inside-container {
     border-radius: 6px/12px;
     border-style: dashed;
     background-color: white;
+    margin-left: 4px;
 }
 
 span.ch {
@@ -39,9 +46,9 @@ span.ch {
 div.scoreboard {
     top: 69%;
     position: absolute;
-    left: 27%;
+    left: 15%;
     text-align: center;
-    width: 700px;
+    width: 1140px;
 }
 
 div#left-player {
@@ -70,4 +77,63 @@ button.sc-btn {
 p#winner {
     font-size: 4em;
     color: yellowgreen;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    top: 40%;
+    left: 42%;
+}
+  
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+.layout {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: 'gray no-repeat center';
+    z-index: 10001;
+    cursor: wait;
+    overflow: hidden!important;
+}
+
+div#lp-score {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 65%;
+    left: 18%;
+    font-size: 30px;
+    color: maroon;
+}
+
+div#rp-score {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    top: 65%;
+    left: 52%;
+    font-size: 30px;
+    color: maroon;
+}
+
+div#rpc1 {
+    top: 25%;
+}
+
+div.rpc1 {
+    top: 25%;
+}
+
+div.rpc3 {
+    top: 55%;
 }

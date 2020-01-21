@@ -8,6 +8,9 @@
         <script src="script.js"></script>
     </head>
     <body>
+        <div class="layout">
+            <div class="loader"></div>
+        </div>
         <div id="left-player" class="container">
             <div class="inside-container">
                 <span class="left-choice ch">
@@ -16,13 +19,35 @@
             </div>
         </div>
 
+        <div id="lp-score">
+            <p>
+                Score: <span id="lp-points"></span>
+            </p>
+        </div>
+
         <div id="right-player" class="container">
-            <div class="inside-container">
-                <span class="right-choice ch">
+            <div class="inside-container rpc1" onclick="userChoice(1)">
+                <span id="rpc1" class="right-choice ch">
+
+                </span>
+            </div>
+            <div class="inside-container rpc2" onclick="userChoice(2)">
+                <span id="rpc2" class="right-choice ch">
+
+                </span>
+            </div>
+            <div class="inside-container rpc3" onclick="userChoice(3)">
+                <span id="rpc3" class="right-choice ch">
 
                 </span>
             </div>
         </div>
+
+        <div id="rp-score">
+                <p>
+                    Score: <span id="rp-points"></span>
+                </p>
+            </div>
 
         <div class="scoreboard">
             <div>
@@ -30,7 +55,7 @@
             </div>
     
             <button class="sc-btn" id="rnd" onclick="randomPlay()">Random play</button>
-            <button class="sc-btn" id="user-input">User play</button>
+            <button class="sc-btn" id="user-input" onclick="userPlay()">User play</button>
         </div>
     </body>
 </html>
