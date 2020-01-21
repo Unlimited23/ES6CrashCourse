@@ -7,24 +7,32 @@ const options = [
 
 // Mode of play - either random or user input
 let rnd = false;
+// Stores the winner - 1: left player, 2: right player, 0: game not started
 let winner = 0;
+// Stores number of wins for the left player
 let leftPlayerPoints = 0;
+// Stores number of wins for the right player
 let rightPlayerPoints = 0;
+// Stores number of wins before game over
 let winPoints = 10;
+// Stores either there is a winner or not;
 let haveWinner = false;
 
 let layout = lpPointsEl = rpPointsEl = rpc1 =
     rpc2 = rpc3 = winnerEl = rndEl = userInput =
     leftEl = rightEl = null;
 
+// Init
 setTimeout(() => {
+    // Loader
     layout = document.getElementsByClassName('layout')[0];
-
+    // Remove loader
     layout.remove();
 
     lpPointsEl = document.getElementById('lp-points');
     rpPointsEl = document.getElementById('rp-points');
 
+    // Set initial points(0) to both players
     lpPointsEl.innerHTML = leftPlayerPoints;
     rpPointsEl.innerHTML = rightPlayerPoints;
 
@@ -32,14 +40,14 @@ setTimeout(() => {
     rpc2 = document.getElementsByClassName('rpc2')[0];
     rpc3 = document.getElementsByClassName('rpc3')[0];
 
+    // Hide right user prompt fields
     rpc1.style.visibility = 'hidden';
     rpc3.style.visibility = 'hidden';
 
+    // Store elements to their corresponding variables
     winnerEl = document.getElementById('winner');
-
     rndEl = document.getElementById('rnd');
     userInput = document.getElementById('user-input');
-
     leftEl = document.querySelectorAll('#left-player .left-choice')[0];
     rightEl = document.querySelectorAll('#right-player span#rpc2')[0];
 });
@@ -53,6 +61,7 @@ function randomPlay() {
     userInput.disabled = true;
     userInput.classList.add('disabled');
 
+    // Hide right user prompt fields
     rpc1.style.visibility = 'hidden';
     rpc3.style.visibility = 'hidden';
 
@@ -66,7 +75,7 @@ function randomPlay() {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
     
-    // Usage!
+    // Wait half a sec before picking choice for right player (Math.random() problem)
     sleep(500).then(() => {
         let rightPlayer = getRand();
 
@@ -79,15 +88,15 @@ function getRand() {
 }
 
 /**
+ * @description Decides the winner of the current turn and the game in general 
  * 
  * @param {Number} choice1 Left player choice 1-3
  * @param {Number} choice2 Right player choice 1-3
  * @param {String} caller Either random play game or user input
  */
 function pickWinner(choice1, choice2) {
-    debugger;
     if (haveWinner) {
-        console.log('winner;');
+        // Reset points for both players
         lpPointsEl.innerHTML = 0;
         rpPointsEl.innerHTML = 0;
 
@@ -104,6 +113,7 @@ function pickWinner(choice1, choice2) {
     winner = 0;
     // 1st scenario - both are equal
     if (choice1 == choice2 && rnd) {
+        // Repeat play only for random plays
         repeatPlay();
     } else if (choice1 == 1 && choice2 == 3) { // Rock beats scissors
         winner = 1; // Left player wins
@@ -124,6 +134,7 @@ function pickWinner(choice1, choice2) {
     let loserColor = 'lightcoral';
 
     if (!rnd) {
+        // Different message when user is picking
         winnerDisplay = 'Draw! Pick an option from the right display:';
     }
 
@@ -183,25 +194,31 @@ function userPlay() {
     window['rpc3'].style.backgroundColor = 'white';
 
     if (haveWinner) {
+        // Reset background color for both containers when there was already one game played
         document.getElementsByClassName('container')[0].style = '#F2F2F2';
         document.getElementsByClassName('container')[1].style = '#F2F2F2';
-
+        // Reset text for left player choice when there was already one game played
         leftEl.innerHTML = '';
     }
 
+    // Disable random play button
     rndEl.disabled = true;
     rndEl.classList.add('disabled');
 
+    // Show prompt buttons
     rpc1.style.visibility = 'visible';
     rpc3.style.visibility = 'visible';
 
+    // Fill prompt buttons with values
     rpc1.children[0].innerHTML = options[0];
     rpc2.children[0].innerHTML = options[1];
     rpc3.children[0].innerHTML = options[2];
 
+    // Reset points for both players
     lpPointsEl.innerHTML = 0;
     rpPointsEl.innerHTML = 0;
 
+    // Set user message
     winnerEl.innerHTML = 'Pick an option from the right display:';
 }
 
@@ -217,7 +234,7 @@ function repeatPlay() {
 
             layout.remove();
         }, 3000);
-    } else {
+    } else { // No need to wait 3 seconds when user is picking
         userPlay();
     }
 }
@@ -229,8 +246,8 @@ function userChoice(choice) {
     window['rpc3'].style.backgroundColor = 'white';
     // Random number from 1-3
     let leftPlayer = getRand();
-
+    // Colorize the selected choice
     window['rpc'+ choice].style.backgroundColor = 'skyblue';
-
+    // Play!
     pickWinner(leftPlayer, choice);
 }
