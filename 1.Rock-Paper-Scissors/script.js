@@ -6,7 +6,7 @@ const options = [
 ];
 
 // Mode of play - either random or user input
-let rnd = false;
+let rnd = true;
 // Stores the winner - 1: left player, 2: right player, 0: game not started
 let winner = 0;
 // Stores number of wins for the left player
@@ -240,6 +240,9 @@ function repeatPlay() {
 }
 
 function userChoice(choice) {
+    if (rnd) {
+        return;
+    }
     // Set white background to all choices
     window['rpc1'].style.backgroundColor = 'white';
     window['rpc2'].style.backgroundColor = 'white';
