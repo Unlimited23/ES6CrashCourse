@@ -1,3 +1,3 @@
-# Coding-Girls-JS-2020
+# ES6+ Crash course
 
 Homeworks for each lesson can be found at the individual README file inside each folder.
